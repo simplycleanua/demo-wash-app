@@ -65,7 +65,11 @@ export async function onRequestPost(context) {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
-  } catch (error) {
-    return new Response(JSON.stringify({ ok: false, error: error.message }), { status: 500 });
-  }
+ } catch (error) {
+  return new Response(JSON.stringify({ 
+    ok: false, 
+    error: error.message,
+    stack: error.stack 
+  }), { status: 500 });
+}
 }
